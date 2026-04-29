@@ -1,0 +1,25 @@
+<header class="topbar">
+    <div>
+        <p class="eyebrow">Ministere de l'Interieur Madagascar</p>
+        <h1>Gestion Back-Office des demandes de visa transformable</h1>
+        <p class="subtitle">
+            Interface administrative 
+        </p>
+    </div>
+    <div class="topbar-actions">
+        <div class="user-info">
+            <c:choose>
+                <c:when test="${not empty sessionScope.currentUser}">
+                    <span class="user-name">${sessionScope.currentUser.nom} ${sessionScope.currentUser.prenom}</span>
+                    <form id="logout-form" action="${pageContext.request.contextPath}/auth/logout" method="post" style="display:inline">
+                        <button class="button link" type="submit">Deconnexion</button>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <a class="button" href="${pageContext.request.contextPath}/backoffice/login">Connexion</a>
+                </c:otherwise>
+            </c:choose>
+            <button id="refresh-dashboard" class="button secondary" type="button">Actualiser le tableau de bord</button>
+        </div>
+    </div>
+</header>

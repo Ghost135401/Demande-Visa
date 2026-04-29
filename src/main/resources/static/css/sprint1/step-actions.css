@@ -1,0 +1,90 @@
+/* Styles pour les boutons d'action des étapes du formulaire Sprint 1 */
+
+.step-actions {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(214, 201, 180, 0.6);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.step-actions .button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-actions .button.primary {
+    background: linear-gradient(135deg, var(--accent-rich), var(--accent));
+    color: white;
+}
+
+.step-actions .button.primary:hover {
+    background: linear-gradient(135deg, var(--accent), var(--accent-rich));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(140, 99, 50, 0.2);
+}
+
+.step-actions .button.secondary {
+    background: linear-gradient(135deg, rgba(255, 252, 247, 0.98), rgba(249, 244, 236, 0.96));
+    color: var(--ink-900);
+    border: 1px solid rgba(214, 201, 180, 0.8);
+}
+
+.step-actions .button.secondary:hover {
+    background: linear-gradient(135deg, rgba(244, 234, 213, 0.95), rgba(244, 234, 213, 0.85));
+    border-color: var(--accent-rich);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(140, 99, 50, 0.15);
+}
+
+.step-actions .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* État désactivé des champs de formulaire */
+.s1-slide input:disabled,
+.s1-slide select:disabled,
+.s1-slide textarea:disabled {
+    background-color: rgba(242, 238, 230, 0.5);
+    color: var(--ink-500);
+    cursor: not-allowed;
+    border-color: rgba(214, 201, 180, 0.4);
+}
+
+/* Indicateur d'étape enregistrée */
+.s1-slide[data-step].saved::after {
+    content: "✓";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    background: var(--success);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(46, 139, 87, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .step-actions {
+        flex-direction: column;
+    }
+
+    .step-actions .button {
+        width: 100%;
+    }
+}

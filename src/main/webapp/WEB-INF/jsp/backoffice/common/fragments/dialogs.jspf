@@ -1,0 +1,45 @@
+<dialog id="accept-modal" class="dialog">
+    <form method="dialog" class="dialog-card" id="accept-form">
+        <div class="dialog-header">
+            <h2>Acceptation du visa</h2>
+            <button class="ghost-button" id="accept-close" type="button">Fermer</button>
+        </div>
+        <p id="accept-modal-note">Renseignez la carte de resident pour terminer le workflow de la demande selectionnee.</p>
+        <div class="form-grid">
+            <label id="accept-card-number-field"><span>Numero carte</span><input type="text" name="numeroCarte" required></label>
+            <label id="accept-card-delivrance-field"><span>Date delivrance</span><input type="date" name="dateDelivrance" required></label>
+            <label id="accept-card-expiration-field"><span>Date expiration</span><input type="date" name="dateExpiration"></label>
+        </div>
+        <button class="button primary" type="submit">Valider l'acceptation</button>
+    </form>
+</dialog>
+<dialog id="qr-modal" class="dialog">
+        <div class="dialog-card">
+        <div class="dialog-header">
+            <h2>QR Code</h2>
+            <button class="ghost-button" id="qr-close" type="button">Fermer</button>
+        </div>
+        <div style="text-align:center; padding: 1rem;">
+            <img id="qr-image" alt="QR Code" style="max-width:100%; height:auto;" />
+            <div id="qr-details" class="qr-details"></div>
+            <div style="margin-top:.5rem;"><a id="qr-download" href="#" download="qrcode.png">Télécharger</a></div>
+        </div>
+    </div>
+</dialog>
+<script>
+    // Fermeture non-submettrice des modals si le navigateur supporte dialog
+    (function(){
+        try {
+            var acceptClose = document.getElementById('accept-close');
+            if (acceptClose) acceptClose.addEventListener('click', function(){
+                var dlg = document.getElementById('accept-modal');
+                if (dlg && typeof dlg.close === 'function') try { dlg.close(); } catch(e) { }
+            });
+            var qrClose = document.getElementById('qr-close');
+            if (qrClose) qrClose.addEventListener('click', function(){
+                var dlg = document.getElementById('qr-modal');
+                if (dlg && typeof dlg.close === 'function') try { dlg.close(); } catch(e) { }
+            });
+        } catch(e) { console.warn('dialog close handler attach failed', e); }
+    })();
+</script>

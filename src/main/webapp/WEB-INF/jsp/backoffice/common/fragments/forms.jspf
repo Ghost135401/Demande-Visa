@@ -1,0 +1,17 @@
+<section class="forms-grid">
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Sauts rapides</p>
+                <h2>Acces aux formulaires</h2>
+            </div>
+        </div>
+        <div class="quick-links">
+            <a class="card" href="${pageContext.request.contextPath}/backoffice/sprint1">Nouvelle demande </a>
+            <a class="card" href="${pageContext.request.contextPath}/backoffice/dossiers">Liste des dossiers </a>
+            <a class="card" href="${pageContext.request.contextPath}/backoffice/sprint2/duplicata">Creer duplicata </a>
+            <a class="card" href="${pageContext.request.contextPath}/backoffice/sprint2/transfert">Creer transfert </a>
+            <a class="card" href="${pageContext.request.contextPath}/backoffice/sprint4/qrcode">QR Code </a>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,36 @@
+# Maven
+target/
+
+# Local maven repo
+.m2/
+
+# Build outputs
+*.class
+*.jar
+*.war
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# Eclipse
+.settings/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+app.err
+app.log
+
+# Uploads and runtime files
+uploads/
+visa-management-uploads/
+
+# Generated
+generated-sources/
+generated-test-sources/

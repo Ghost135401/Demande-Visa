@@ -1,0 +1,85 @@
+<aside class="sidebar">
+    <nav class="sidebar-nav">
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/backoffice">Tableau de bord</a></li>
+            <li><a href="${pageContext.request.contextPath}/backoffice/dossiers">Liste des dossiers</a></li>
+            <li class="submenu">Saisie de donnees
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/backoffice/sprint1">Nouvelle demande</a></li>
+                    <li><a href="${pageContext.request.contextPath}/backoffice/dossiers?scope=SPRINT1">Liste des demandes</a></li>
+                </ul>
+            </li>
+            <li class="submenu">Duplicata
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/backoffice/sprint2/duplicata">Creer duplicata</a></li>
+                    <li><a href="${pageContext.request.contextPath}/backoffice/dossiers?scope=SPRINT2">Liste des duplicatas</a></li>
+                </ul>
+            </li>
+            <li class="submenu">Transfert Visa
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/backoffice/sprint2/transfert">Creer transfert</a></li>
+                    <li><a href="${pageContext.request.contextPath}/backoffice/dossiers?scope=SPRINT2BIS">Liste des transferts</a></li>
+                </ul>
+            </li>
+            <li><a href="${pageContext.request.contextPath}/backoffice/scan">Scan des donnees</a></li>
+            <li><a href="${pageContext.request.contextPath}/backoffice/sprint4/qrcode">QR Code</a></li>
+        </ul>
+    </nav>
+</aside>
+<script>
+    // Toggle submenu open/close on click
+    (function(){
+        const subs = document.querySelectorAll('.sidebar-nav .submenu');
+        const currentPath = window.location.pathname;
+        
+        // Set active class for current page
+        function setActiveLinks() {
+            const links = document.querySelectorAll('.sidebar-nav a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && currentPath.includes(href)) {
+                    link.closest('.submenu')?.classList.add('open');
+                    link.closest('.submenu')?.classList.add('active');
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Initialize active states
+        setActiveLinks();
+        
+        // Toggle submenu open/close on click
+        subs.forEach(s => {
+            s.style.cursor = 'pointer';
+            s.addEventListener('click', function(e) {
+                // avoid toggling when clicking a link inside
+                if (e.target.tagName.toLowerCase() === 'a') return;
+                
+                // Close other submenus
+                subs.forEach(other => {
+                    if (other !== this) {
+                        other.classList.remove('open');
+                    }
+                });
+                
+                this.classList.toggle('open');
+            });
+        });
+        
+        // Add smooth animation for submenu opening
+        const style = document.createElement('style');
+        style.textContent = `
+            .sidebar-nav .submenu > ul {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+            }
+            .sidebar-nav .submenu.open > ul {
+                max-height: 500px;
+                opacity: 1;
+            }
+        `;
+        document.head.appendChild(style);
+    })();
+</script>

@@ -1,0 +1,259 @@
+<section class="stats-grid" id="stats-grid">
+    <article class="stat-card">
+        <span class="stat-label">Total demandes</span>
+        <strong id="stat-total">0</strong>
+    </article>
+    <article class="stat-card">
+        <span class="stat-label">Nouvelles demandes</span>
+        <strong id="stat-sprint1">0</strong>
+    </article>
+    <article class="stat-card">
+        <span class="stat-label">Demandes liees</span>
+        <strong id="stat-sprint2">0</strong>
+    </article>
+    <article class="stat-card">
+        <span class="stat-label">Visa acceptes</span>
+        <strong id="stat-accepted">0</strong>
+    </article>
+</section>
+
+<section class="sprint-overview-grid">
+    <article class="panel sprint-overview sprint-overview-s1">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Demarche dediee</p>
+                <h2>Nouvelles demandes</h2>
+            </div>
+            <span class="tag">Dossier cree puis scan</span>
+        </div>
+        <p class="overview-text">
+            Les dossiers initiaux de transformation sont saisis ici, puis completes par le scan des pieces.
+        </p>
+        <div id="sprint1-list" class="mini-list"></div>
+    </article>
+
+    <article class="panel sprint-overview sprint-overview-s2">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Demarche dediee</p>
+                <h2>Demandes liees</h2>
+            </div>
+            <span class="tag">Duplicata et transfert</span>
+        </div>
+        <p class="overview-text">
+            Les dossiers derives conservent la logique du titre existant: duplicata de carte ou transfert vers un nouveau passeport.
+        </p>
+        <div id="sprint2-list" class="mini-list"></div>
+    </article>
+</section>
+
+<main class="main-grid">
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Saisie et operations</p>
+                <h2>Demandes back-office</h2>
+            </div>
+            <div class="segmented-control" role="tablist" aria-label="Filtre des dossiers">
+                <button class="segment active" data-filter="ALL" type="button">Tout</button>
+                <button class="segment" data-filter="SPRINT1" type="button">Nouvelles demandes</button>
+                <button class="segment" data-filter="SPRINT2" type="button">Duplicata</button>
+                <button class="segment" data-filter="SPRINT2BIS" type="button">Transferts</button>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <label>
+                Liste metier
+                <select id="list-selector">
+                    <option value="ALL">Toutes les demandes</option>
+                    <option value="SPRINT1">Nouvelles demandes</option>
+                    <option value="SPRINT2">Duplicata</option>
+                    <option value="SPRINT2BIS">Transferts</option>
+                    <option value="LEGACY">Sans donnees anterieures</option>
+                    <option value="DOSSIER_CREE">Dossiers crees</option>
+                    <option value="SCAN_TERMINE">Scan termines</option>
+                    <option value="VISA_ACCEPTE">Visa acceptes</option>
+                </select>
+            </label>
+            <label>
+                Statut
+                <select id="filter-statut">
+                    <option value="">Tous</option>
+                    <option value="DOSSIER_CREE">Dossier cree</option>
+                    <option value="SCAN_TERMINE">Scan termine</option>
+                    <option value="VISA_ACCEPTE">Visa accepte</option>
+                </select>
+            </label>
+            <label>
+                Categorie
+                <select id="filter-categorie">
+                    <option value="">Toutes</option>
+                    <option value="TRAVAILLEUR">Travailleur</option>
+                    <option value="INVESTISSEUR">Investisseur</option>
+                </select>
+            </label>
+            <label>
+                Type dossier
+                <select id="filter-type">
+                    <option value="">Tous</option>
+                    <option value="PASSEPORT">Passeport</option>
+                    <option value="TRANSFERT_VISA">Transfert de visa</option>
+                    <option value="VISA">Visa (nouveau titre)</option>
+                    <option value="CARTE_RESIDENT">Carte resident</option>
+                </select>
+            </label>
+            <button id="apply-filters" class="button secondary" type="button">Appliquer</button>
+        </div>
+
+        <div class="table-wrap">
+            <table class="admin-table">
+                <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Parcours</th>
+                    <th>Type</th>
+                    <th>Categorie</th>
+                    <th>Statut</th>
+                    <th>Demandeur</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="demande-table-body">
+                <tr>
+                    <td colspan="7" class="empty-state">Chargement des demandes...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <aside class="panel detail-panel">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Dossier selectionne</p>
+                <h2>Detail de la demande</h2>
+            </div>
+        </div>
+        <div id="detail-empty" class="placeholder-box">
+            Selectionnez une demande pour verifier l'etat civil, les pieces justificatives, les uploads et les actions de workflow.
+        </div>
+        <div id="detail-content" class="detail-content hidden">
+            <div class="badge-row">
+                <span class="status-badge" id="detail-statut">-</span>
+                <span class="tag" id="detail-sprint">-</span>
+                <span class="tag" id="detail-type">-</span>
+            </div>
+
+            <dl class="detail-grid">
+                <div><dt>Numero</dt><dd id="detail-numero">-</dd></div>
+                <div><dt>Categorie</dt><dd id="detail-categorie">-</dd></div>
+                <div><dt>Demandeur</dt><dd id="detail-demandeur">-</dd></div>
+                <div><dt>Email</dt><dd id="detail-email">-</dd></div>
+                <div><dt>Telephone</dt><dd id="detail-telephone">-</dd></div>
+                <div><dt>Demande parente</dt><dd id="detail-parente">-</dd></div>
+            </dl>
+
+            <!-- Section Passeport -->
+            <section class="subpanel">
+                <div class="subpanel-header">
+                    <div>
+                        <h3>Passeport</h3>
+                        <p>Informations sur le passeport du demandeur.</p>
+                    </div>
+                </div>
+                <dl class="detail-grid">
+                    <div><dt>Numero</dt><dd id="detail-passeport-numero">-</dd></div>
+                    <div><dt>Date de delivrance</dt><dd id="detail-passeport-delivrance">-</dd></div>
+                    <div><dt>Date d'expiration</dt><dd id="detail-passeport-expiration">-</dd></div>
+                </dl>
+            </section>
+
+            <!-- Section Visa transformable -->
+            <section class="subpanel">
+                <div class="subpanel-header">
+                    <div>
+                        <h3>Visa transformable</h3>
+                        <p>Informations sur le visa transformable du demandeur (pour NOUVEAU_TITRE).</p>
+                    </div>
+                </div>
+                <dl class="detail-grid">
+                    <div><dt>Reference</dt><dd id="detail-visa-reference">-</dd></div>
+                    <div><dt>Date d'entree</dt><dd id="detail-visa-entree">-</dd></div>
+                    <div><dt>Lieu d'entree</dt><dd id="detail-visa-lieu">-</dd></div>
+                    <div><dt>Date de sortie</dt><dd id="detail-visa-sortie">-</dd></div>
+                </dl>
+            </section>
+
+            <!-- Section Carte de résident -->
+            <section class="subpanel">
+                <div class="subpanel-header">
+                    <div>
+                        <h3>Carte de resident</h3>
+                        <p>Informations sur la carte de resident (generee lors de l'acceptation du visa).</p>
+                    </div>
+                </div>
+                <dl class="detail-grid">
+                    <div><dt>Numero</dt><dd id="detail-carte-numero">-</dd></div>
+                    <div><dt>Date de delivrance</dt><dd id="detail-carte-delivrance">-</dd></div>
+                    <div><dt>Date d'expiration</dt><dd id="detail-carte-expiration">-</dd></div>
+                </dl>
+            </section>
+
+            <div class="action-strip">
+                <button id="scan-termine-button" class="button secondary" type="button">Passer en scan termine</button>
+                <button id="open-accept-modal" class="button primary" type="button">Finaliser le dossier</button>
+                <button id="generate-qr-button" class="button secondary" type="button">QR du dossier</button>
+            </div>
+
+            <section class="subpanel">
+                <div class="subpanel-header">
+                    <div>
+                        <h3>Pieces justificatives</h3>
+                        <p>
+                            Chaque piece affiche son etat d'upload, son caractere obligatoire et les actions visibles:
+                            cocher, uploader, remplacer et supprimer.
+                        </p>
+                    </div>
+                </div>
+                <div id="pieces-list" class="pieces-list"></div>
+            </section>
+
+            <section class="subpanel">
+                <div class="subpanel-header">
+                    <div>
+                        <h3>Demandes liees</h3>
+                        <p>Creation rapide d'un duplicata ou d'un transfert de visa a partir du dossier accepte.</p>
+                    </div>
+                </div>
+                <form id="linked-request-form" class="compact-form">
+                    <div class="compact-grid">
+                        <label>
+                            Type de demande
+                            <select name="typeDemande" required>
+                                <option value="DUPLICATA">Duplicata</option>
+                                <option value="TRANSFERT_VISA">Transfert de visa</option>
+                            </select>
+                        </label>
+                        <label>
+                            Numero de passeport
+                            <input type="text" name="passeportNumero">
+                        </label>
+                        <label>
+                            Date de delivrance
+                            <input type="date" name="passeportDateDelivrance">
+                        </label>
+                        <label>
+                            Date d'expiration
+                            <input type="date" name="passeportDateExpiration">
+                        </label>
+                    </div>
+                    <p id="linked-request-note" class="form-note">
+                        Pour un duplicata, le passeport parent est repris automatiquement. Les champs passeport servent seulement au transfert de visa.
+                    </p>
+                    <button class="button secondary" type="submit">Creer la demande liee</button>
+                </form>
+            </section>
+        </div>
+    </aside>
+</main>

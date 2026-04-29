@@ -1,0 +1,35 @@
+/* ===== Sidebar fix — s'étend sur toute la hauteur de la page ===== */
+
+.layout-shell {
+    display: flex !important;
+    gap: 16px !important;
+    align-items: stretch !important;   /* les enfants s'étirent sur toute la hauteur */
+    min-height: 100vh;                 /* layout occupe au moins toute la fenêtre */
+}
+
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    align-self: stretch;               /* sidebar suit la hauteur du layout-shell */
+}
+
+.sidebar-nav {
+    position: sticky;
+    top: 24px;
+    min-height: 100%;                  /* remplit tout l'espace vertical de .sidebar */
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;              /* centre les éléments horizontalement */
+    justify-content: center;            /* centre les éléments verticalement */
+}
+
+.main-area {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
